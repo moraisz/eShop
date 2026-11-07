@@ -1,0 +1,22 @@
+[project]
+name = "eshop"
+version = "0.1.0"
+description = "Ecommerce application with admin panel builded using Django"
+readme = "README.md"
+authors = [
+    { name = "moraisz", email = "marcosviniciusm99@gmail.com" }
+]
+requires-python = ">=3.14"
+dependencies = [
+    "daphne>=4.2.3",
+    "django>=6.1.1",
+    "django-environ>=0.14.0",
+    "psycopg[binary]>=3.3.8",
+]
+
+[tool.uv]
+package = false
+
+[build-system]
+requires = ["uv_build>=0.12.19,<0.13.0"]
+build-backend = "uv_build"

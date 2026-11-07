@@ -1,0 +1,28 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+# Secrets
+.env
+.env.example
+
+# Unecessary docker
+Dockerfile
+Dockerfile.dev
+docker-compose.yml
+.dockerignore
+
+# Git
+.git/
+.github/
+.gitignore
+
+# Docs
+README.md
