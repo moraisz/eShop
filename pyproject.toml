@@ -1,6 +1,6 @@
 [project]
 name = "eshop"
-version = "0.1.0"
+version = "0.2.0"
 description = "Ecommerce application with admin panel builded using Django"
 readme = "README.md"
 authors = [
@@ -12,10 +12,17 @@ dependencies = [
     "django>=6.1.1",
     "django-environ>=0.14.0",
     "psycopg[binary]>=3.3.8",
+    "whitenoise>=6.12.0",
 ]
 
 [tool.uv]
 package = false
+
+[tool.ruff]
+line-length = 88
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "DJ"]
 
 [build-system]
 requires = ["uv_build>=0.12.19,<0.13.0"]
