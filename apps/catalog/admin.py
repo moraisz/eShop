@@ -32,7 +32,7 @@ class ProductAdmin(admin.ModelAdmin):
     ordering = ("-created_at",)
     fieldsets = (
         (None, {"fields": ("name", "slug", "category")}),
-        ("Details", {"fields": ("description", "price", "stock", "active")}),
+        ("Details", {"fields": ("description", "image", "price", "stock", "active")}),
         ("Dates", {"fields": ("created_at", "updated_at"), "classes": ("collapse",)}),
     )
     readonly_fields = ("created_at", "updated_at")
