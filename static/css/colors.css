@@ -1,0 +1,20 @@
+:root {
+  /* Primary: brand identity, header, links, main buttons */
+  --color-primary: #4f46e5;
+  --color-on-primary: #ffffff;
+
+  /* Highlight: Purchase CTAs, promotions, discount stamps */
+  --color-accent: #f97316;
+  --color-on-accent: #0f172a;
+
+  /* Neutral: text, dark backgrounds, footer */
+  --color-neutral: #0f172a;
+  --color-on-neutral: #ffffff;
+
+  /* Derived variations (hover and soft backgrounds), generated from the 3 colors */
+  --color-primary-hover: color-mix(in srgb, var(--color-primary) 85%, black);
+  --color-accent-hover: color-mix(in srgb, var(--color-accent) 85%, black);
+  --color-primary-soft: color-mix(in srgb, var(--color-primary) 10%, white);
+  --color-accent-soft: color-mix(in srgb, var(--color-accent) 12%, white);
+  --color-neutral-soft: color-mix(in srgb, var(--color-neutral) 6%, white);
+}

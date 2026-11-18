@@ -1,0 +1,79 @@
+{% comment %}
+Generic carousel component.
+
+Usage:
+  {% include "components/carousel.html" with carousel_label="..." carousel_items=items carousel_item_template="components/product_card.html" only %}
+
+Params:
+  carousel_label            accessible name of the carousel (required)
+  carousel_items            iterable of objects (required)
+  carousel_item_template    template rendered once per item; it must output an <li> (required)
+  carousel_title            heading text (optional)
+  carousel_title_tag        heading tag, e.g. "h1" (default "h2")
+  carousel_empty_message    text shown when the list is empty
+  carousel_modifier         extra class(es) added to the root element
+
+Each item is available inside the item template both as "item" and as "product",
+so existing item templates keep working unchanged.
+
+Requires (load once per page):
+  css/components/carousel.css
+  js/components/carousel.js (with defer)
+{% endcomment %}
+<section class="carousel{% if carousel_modifier %} {{ carousel_modifier }}{% endif %}"
+         aria-roledescription="carrossel"
+         aria-label="{{ carousel_label }}"
+         data-carousel-root>
+    <div class="carousel__header">
+        {% if carousel_title %}
+            <{{ carousel_title_tag|default:"h2" }} class="carousel__title">
+                {{ carousel_title }}
+            </{{ carousel_title_tag|default:"h2" }}>
+        {% endif %}
+
+        <div class="carousel__controls">
+            <button class="carousel__arrow" type="button" data-carousel="prev"
+                    aria-label="Ver itens anteriores">
+                <svg width="20"
+                     height="20"
+                     viewBox="0 0 24 24"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="2"
+                     stroke-linecap="round"
+                     stroke-linejoin="round"
+                     aria-hidden="true">
+                    <path d="m15 18-6-6 6-6" />
+                </svg>
+            </button>
+            <button class="carousel__arrow" type="button" data-carousel="next"
+                    aria-label="Ver próximos itens">
+                <svg width="20"
+                     height="20"
+                     viewBox="0 0 24 24"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="2"
+                     stroke-linecap="round"
+                     stroke-linejoin="round"
+                     aria-hidden="true">
+                    <path d="m9 6 6 6-6 6" />
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <ul class="carousel__track" data-carousel="track" tabindex="0"
+        aria-label="{{ carousel_label }}">
+        {% for item in carousel_items %}
+            {% include carousel_item_template with item=item product=item only %}
+        {% empty %}
+            <li class="carousel__empty">
+                {{ carousel_empty_message|default:"Nenhum item disponível." }}
+            </li>
+        {% endfor %}
+    </ul>
+
+    <div class="carousel__dots" data-carousel="dots"
+         role="group" aria-label="Navegação do carrossel"></div>
+</section>

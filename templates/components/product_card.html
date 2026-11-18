@@ -1,12 +1,37 @@
-<div class="card">
-    <li>
-        <strong>{{ product.name }}</strong>
-        {% if product.category %}
-            <small>({{ product.category.name }})</small>
-        {% endif %}
-        <p>R$ {{ product.price }}</p>
+{% comment %}
+Product card component (renders an <li>).
+
+Usage:
+  {% include "components/product_card.html" with product=product only %}
+
+Usually rendered once per item by "components/carousel.html", which passes the
+object as both "item" and "product".
+
+Requires (load once per page):
+  css/components/product_card.css
+{% endcomment %}
+<li class="product-card {% if product.stock == 0 %}product-card--out{% endif %}">
+    {% if product.stock == 0 %}
+        <span class="product-card__badge">Esgotado</span>
+    {% endif %}
+
+    <div class="product-card__media">
         {% if product.image %}
-            <img src="{{ product.image.url }}" alt="{{ product.name }}" width="200">
+            <img src="{{ product.image.url }}" alt="{{ product.name }}" loading="lazy">
         {% endif %}
-    </li>
-</div>
+    </div>
+
+    <div class="product-card__body">
+        {% if product.category %}
+            <span class="product-card__category">{{ product.category.name }}</span>
+        {% endif %}
+
+        <h3 class="product-card__name">
+            <a href="#">{{ product.name }}</a>
+        </h3>
+
+        <p class="product-card__price">R$ {{ product.price }}</p>
+
+        <button type="button" class="product-card__button">Adicionar ao carrinho</button>
+    </div>
+</li>

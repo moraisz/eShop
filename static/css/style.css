@@ -1,0 +1,26 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Page shell: header on top, content grows, footer at the bottom */
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* fallback */
+  min-height: 100dvh; /* dynamic viewport on mobile */
+}
+
+/* Wrapper removed from the layout so the header's sticky is not
+   clamped to its own box (it would only stick inside #header) */
+#header {
+  display: contents;
+}
+
+/* Content absorbs the leftover height, pushing the footer down */
+#app {
+  flex: 1;
+}

@@ -1,14 +1,26 @@
 {% extends "index.html" %}
 
+{% block extra_styles %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/components/product_card.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/components/carousel.css' %}" />
+{% endblock %}
+
 {% block page_title %}{{ page_title }}{% endblock %}
 
+{% block header %}
+    {% include "parts/header.html" %}
+{% endblock %}
+
 {% block app %}
-    <h1>Produtos em destaque</h1>
-    <ul>
-        {% for product in products %}
-            {% include "components/product_card.html" with product=product only %}
-        {% empty %}
-            <li>Nenhum produto disponível.</li>
-        {% endfor %}
-    </ul>
+    {% include "components/carousel.html" with carousel_label="Produtos em destaque" carousel_title="Produtos em destaque" carousel_title_tag="h1" carousel_items=products carousel_item_template="components/product_card.html" carousel_empty_message="Nenhum produto disponível." only %}
+{% endblock %}
+
+{% block footer %}
+    {% include "parts/footer.html" %}
+{% endblock %}
+
+{% block extra_scripts %}
+    {% load static %}
+    <script src="{% static 'js/components/carousel.js' %}" defer></script>
 {% endblock %}

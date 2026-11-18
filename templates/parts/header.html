@@ -1,0 +1,97 @@
+<header class="site-header">
+    <div class="site-header__inner">
+        <a class="site-header__logo" href="{% url 'core:home' %}">
+            e<span>Shop</span>
+        </a>
+
+        <form class="site-header__search" action="#" method="get" role="search">
+            <label class="visually-hidden" for="header-search">Buscar produtos</label>
+            <input 
+                id="header-search"
+                type="search"
+                name="q"
+                placeholder="Buscar produtos..."
+                value="{{ request.GET.q }}"
+            >
+            <button type="submit" aria-label="Buscar">
+                <svg width="18"
+                     height="18"
+                     viewBox="0 0 24 24"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="2"
+                     stroke-linecap="round"
+                     aria-hidden="true">
+                    <circle cx="11" cy="11" r="7" />
+                    <path d="m20 20-3.5-3.5" />
+                </svg>
+            </button>
+        </form>
+
+        <div class="site-header__actions">
+            {% if user.is_authenticated %}
+                {% if user.is_staff %}
+                    <a class="site-header__link" href="{% url 'admin:index' %}">Admin</a>
+                {% endif %}
+
+                <a class="site-header__link" href="#">Minha conta</a>
+
+                <form action="#" method="post" class="site-header__logout">
+                    {% csrf_token %}
+                    <button type="submit" class="site-header__link">Sair</button>
+                </form>
+            {% else %}
+                <a class="site-header__link" href="#">Entrar</a>
+                <a class="site-header__cta" href="#">Criar conta</a>
+            {% endif %}
+
+            <a class="site-header__cart"
+               href="#"
+               aria-label="Carrinho, {{ cart_count|default:0 }} itens"
+            >
+                <svg width="22"
+                     height="22"
+                     viewBox="0 0 24 24"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="2"
+                     stroke-linecap="round"
+                     stroke-linejoin="round"
+                     aria-hidden="true">
+                    <circle cx="9" cy="20" r="1.5" /><circle cx="18" cy="20" r="1.5" />
+                    <path d="M2 3h3l2.7 12.4a1 1 0 0 0 1 .8h8.9a1 1 0 0 0 1-.8L20 7H6" />
+                </svg>
+
+                <span class="site-header__badge">{{ cart_count|default:0 }}</span>
+            </a>
+
+            <button class="site-header__toggle"
+                    type="button"
+                    aria-expanded="false"
+                    aria-label="Abrir menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </div>
+
+    <nav class="site-header__nav" id="site-nav" aria-label="Principal">
+        <ul>
+            <li><a href="{% url 'core:home' %}">Início</a></li>
+            <li><a href="#">Produtos</a></li>
+            <li><a href="#">Categorias</a></li>
+            <li><a href="#">Promoções</a></li>
+        </ul>
+    </nav>
+</header>
+
+<script>
+  (function () {
+    var toggle = document.querySelector(".site-header__toggle");
+    var header = document.querySelector(".site-header");
+    if (!toggle) return;
+    toggle.addEventListener("click", function () {
+      var open = header.classList.toggle("is-open");
+      toggle.setAttribute("aria-expanded", open);
+    });
+  })();
+</script>

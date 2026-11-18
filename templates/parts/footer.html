@@ -1,0 +1,38 @@
+<footer class="site-footer">
+    <div class="site-footer__inner">
+        <div class="site-footer__brand">
+            <a class="site-footer__logo" href="{% url 'core:home' %}">
+                e<span>Shop</span>
+            </a>
+            <p class="site-footer__tagline">
+                Produtos selecionados, preços justos e entrega para todo o Brasil.
+            </p>
+        </div>
+
+        <nav class="site-footer__nav" aria-label="Rodapé">
+            <div class="site-footer__column">
+                <h2 class="site-footer__heading">Institucional</h2>
+                <ul>
+                    <li><a href="#">Sobre a eShop</a></li>
+                    <li><a href="#">Trabalhe conosco</a></li>
+                    <li><a href="#">Contato</a></li>
+                </ul>
+            </div>
+
+            <div class="site-footer__column">
+                <h2 class="site-footer__heading">Ajuda</h2>
+                <ul>
+                    <li><a href="#">Central de ajuda</a></li>
+                    <li><a href="#">Entregas e prazos</a></li>
+                    <li><a href="#">Trocas e devoluções</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+    <div class="site-footer__bottom">
+        <p class="site-footer__copyright">
+            © {% now "Y" %} eShop. Todos os direitos reservados.
+        </p>
+    </div>
+</footer>
