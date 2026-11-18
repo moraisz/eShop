@@ -1,0 +1,12 @@
+<div class="card">
+    <li>
+        <strong>{{ product.name }}</strong>
+        {% if product.category %}
+            <small>({{ product.category.name }})</small>
+        {% endif %}
+        <p>R$ {{ product.price }}</p>
+        {% if product.image %}
+            <img src="{{ product.image.url }}" alt="{{ product.name }}" width="200">
+        {% endif %}
+    </li>
+</div>

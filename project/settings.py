@@ -53,6 +53,7 @@ DJANGO_APPS = [
 LOCAL_APPS = [
     "apps.core",
     "apps.accounts",
+    "apps.catalog",
 ]
 
 INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS
@@ -148,7 +149,11 @@ MAILERS = {
 
 # Storage
 
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
 STORAGES = {
+    "default": {"BACKEND": "django.core.files.storage.FileSystemStorage"},
     "staticfiles": {
         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
     },
